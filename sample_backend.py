@@ -12,7 +12,14 @@ def hello_world():
 def get_users():
    if request.method == 'GET':
       search_username = request.args.get('name')
-      if search_username :
+      search_job = request.args.get('job')
+      if search_job :
+         subdict = {'users_list' : []}
+         for user in users['users_list']:
+            if user['name'] == search_username and user['job'] == search_job:
+               subdict['users_list'].append(user)
+         return subdict
+      elif search_username :
          subdict = {'users_list' : []}
          for user in users['users_list']:
             if user['name'] == search_username:
